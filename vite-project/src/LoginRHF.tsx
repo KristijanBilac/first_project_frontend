@@ -39,6 +39,7 @@ export default function Login() {
         const { isValid, errors,isDirty } = formState;
 
         const onSubmit = async (data: FormValues) => {
+
             try {
                 console.log("Form submitted", data);
 
@@ -48,6 +49,7 @@ export default function Login() {
                 });
 
                 if (response.status === 200) {
+                    document.cookie = `token=${response.data.access_token}`;
                     navigate("/home");
                 }
 
