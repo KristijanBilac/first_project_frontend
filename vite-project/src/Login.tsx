@@ -36,7 +36,7 @@ export default function Login() {
         } = form;
 
         // @ts-ignore
-        const { isValid, errors,isDirty } = formState;
+        const { errors } = formState;
 
         const onSubmit = async (data: FormValues) => {
 
@@ -65,9 +65,11 @@ export default function Login() {
     return (
 
         <>
-            <form onSubmit={handleSubmit(onSubmit , onError)} noValidate>
+            <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
 
-                <h2>Login</h2>
+                <div className="title-for_container">
+                    <h2>Login</h2>
+                </div>
 
                 <div className="login-container">
 
@@ -97,7 +99,7 @@ export default function Login() {
                                    required: "Password is required",
                                }
                            )}
-                           type="text"
+                           type="password"
                            id="password"
                            placeholder={"Password"}/>
 

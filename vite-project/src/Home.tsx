@@ -8,7 +8,27 @@ import {Link} from "react-router-dom";
 import { useState } from "react";
 
 
+
+// axios.interceptors.response.use(async (req, res) => {
+//     console.log(res)
+//     if (res.status === 401) {
+//         // logout
+//     }
+//     return res;
+// })
+
 export default function Home() {
+
+    // const navigate = useNavigate();
+
+    // axios.interceptors.response.use(async (req,res) => {
+    //     console.log(res)
+    //     if (res.status === 401){
+    //         navigate("/login");
+    //     }
+    //     return res;
+    //
+    // })
 
     const [data, setData] = useState<Array<{ id: number; email: string; password: string }>>([]);
 
@@ -39,6 +59,14 @@ export default function Home() {
     }
     }
 
+    const onDeleteAllData = async () => {
+        try {
+            setData([]);
+            console.log("All data deleted");
+        } catch (error) {
+            console.error("Error deleting data", error);
+        }
+    };
 
 
     // @ts-ignore
@@ -49,7 +77,22 @@ export default function Home() {
 
                 <h2>HOME PAGE</h2>
 
-                <div className="login-container">
+                <div className="data-container">
+
+
+                    <button type="submit">Get Data</button>
+
+                    <button type="button" onClick={onDeleteAllData}>
+                        Delete All Data
+                    </button>
+
+                    <Link to="/update_user">
+                        <button>Change password</button>
+                    </Link>
+
+                    <Link to="/login">
+                        <button>Logout</button>
+                    </Link>
 
                     <div>
                         <h3>Fetched Data:</h3>
@@ -69,11 +112,6 @@ export default function Home() {
                         )}
                     </div>
 
-                    <button type="submit">Get Data</button>
-
-                    <Link to="/login">
-                        <button>Logout</button>
-                    </Link>
 
                 </div>
 

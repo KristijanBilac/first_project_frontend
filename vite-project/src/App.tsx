@@ -1,11 +1,11 @@
 import './App.css'
-import './index.css'
-import Login from './LoginRHF.tsx';
-import Register from "./RegisterRHF.tsx";
-import Home from './HomeRHF.tsx'
+import Login from './Login.tsx';
+import Register from "./Register.tsx";
+import Home from './Home.tsx'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { PrimeReactProvider } from 'primereact/api';
 import "primereact/resources/themes/lara-light-cyan/theme.css";
+import Update_user from "./Update_user.tsx";
 
 
 
@@ -16,26 +16,26 @@ export default function App() {
 
         <BrowserRouter>
             <PrimeReactProvider>
+
                 <header>
                 <div className="Welcome">
                     <h1>Welcome to my app</h1>
                 </div>
                 </header>
 
-                <body>
-                <div className="App">
 
+                <body>
 
                     <div className="content">
                         <Routes>
                             <Route path="/" element={<Login/>}/>
                             <Route path="/register" element={<Register/>}/>
+                            <Route path="/update_user" element={<Update_user/>}/>
                             <Route path="/home" element={<Home/>}/>
                             <Route path="*" element={<Login/>}/>
                         </Routes>
                     </div>
 
-                </div>
                 </body>
             </PrimeReactProvider>
         </BrowserRouter>

@@ -30,25 +30,26 @@ export default function Register() {
     } = form;
 
     // @ts-ignore
-    const { isValid, errors,isDirty } = formState;
+    const { errors } = formState;
     const onSubmit = async (data: FormValues) => {
-        // if (isValid) {
-        // try {
+
         if  (data.conf_password !== data.password){
             alert('Not the same password, confirm password again')
             console.log('Not the same password, confirm password again')
         } else {
 
-            console.log('Form submited', data)
-            await axios.post('http://127.0.0.1:8000/api/auth/sign-up', {
-                email: data.email,
-                password: data.password
-            })
+            try {
+
+                console.log('Form submited', data)
+                await axios.post('http://127.0.0.1:8000/api/auth/sign-up', {
+                    email: data.email,
+                    password: data.password
+                })
+
+            }catch (error) {
+                console.error("There was an error!", error)
+            }
         }
-        // } catch {error} {
-        //     console.error("There was an error!", error)
-        // }
-        // }
     }
     const onError = (errors: FieldErrors<FormValues>) => {
         console.log("Form errors", errors);
@@ -58,7 +59,9 @@ export default function Register() {
         <>
             <form onSubmit={handleSubmit(onSubmit, onError) } noValidate>
 
+                <div className="title-for_container">
                 <h2>Register</h2>
+                </div>
 
                 <div className="login-container">
 
